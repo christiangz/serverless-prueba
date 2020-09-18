@@ -1,0 +1,129 @@
+---
+swagger: "2.0"
+info:
+  description: "Reto Tecnico"
+  version: "1.0.0"
+  title: "Serverless Prueba"
+paths:
+  /planets:
+    get:
+      tags:
+      - "planets"
+      summary: "Returns planets from SWAPI - The Star Wars API"
+      description: ""
+      operationId: "planetsGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Planet"
+      x-swagger-router-controller: "Planets"
+  /users:
+    get:
+      tags:
+      - "user"
+      summary: "Returns users"
+      description: ""
+      operationId: "usersGET"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+      x-swagger-router-controller: "User"
+    post:
+      tags:
+      - "user"
+      summary: "Create user"
+      description: ""
+      operationId: "createUser"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "201":
+          description: "successful operation"
+      x-swagger-router-controller: "User"
+definitions:
+  Planet:
+    type: "object"
+    properties:
+      nombre:
+        type: "string"
+      periodo_rotacion:
+        type: "string"
+      periodo_orbital:
+        type: "string"
+      diametro:
+        type: "string"
+      clima:
+        type: "string"
+      gravedad:
+        type: "string"
+      terreno:
+        type: "string"
+      superficie_agua:
+        type: "string"
+      poblacion:
+        type: "string"
+      residentes:
+        type: "array"
+        items:
+          type: "string"
+      peliculas:
+        type: "array"
+        items:
+          type: "string"
+      creado:
+        type: "string"
+      editado:
+        type: "string"
+      url:
+        type: "string"
+    example:
+      diametro: "diametro"
+      peliculas:
+      - "peliculas"
+      - "peliculas"
+      nombre: "nombre"
+      periodo_rotacion: "periodo_rotacion"
+      url: "url"
+      residentes:
+      - "residentes"
+      - "residentes"
+      clima: "clima"
+      gravedad: "gravedad"
+      creado: "creado"
+      editado: "editado"
+      superficie_agua: "superficie_agua"
+      periodo_orbital: "periodo_orbital"
+      poblacion: "poblacion"
+      terreno: "terreno"
+  User:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+      lastname:
+        type: "string"
+      email:
+        type: "string"
+      age:
+        type: "string"
+    example:
+      name: "name"
+      email: "email"
+      age: "age"
+      lastname: "lastname"

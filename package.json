@@ -1,0 +1,24 @@
+{
+  "name": "serverless-prueba",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.663.0",
+    "axios": "^0.19.2",
+    "object-mapper": "^6.2.0",
+    "translate": "^1.1.2",
+    "uuid": "^7.0.3"
+  },
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-mocha-plugin": "^1.12.0",
+    "serverless-offline": "^6.1.4"
+  }
+}
