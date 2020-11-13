@@ -1,15 +1,35 @@
-## Local
+# Serverless Test
 
-npm i
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
-sls dynamodb install
+### Local Installation
 
-sls offline start
+Requires [Node.js](https://nodejs.org/) and [Serverles Framework](https://www.serverless.com/) to run.
 
-## Test 
+Install the dependencies and devDependencies.
+```sh
+$ npm i
+```
+Install local dynamodb
+```sh
+$ sls dynamodb install
+```
 
-sls invoke test
+Start local server
+```sh
+$ sls offline start
+```
 
-## Deploy
+### Run tests
+```sh
+$ sls invoke test
+```
+Code coverage
+```sh
+$ npx nyc sls invoke test
+```
 
-sls deploy
+### AWS deploy
+```sh
+$ sls deploy
+```

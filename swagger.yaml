@@ -55,6 +55,8 @@ paths:
       responses:
         "201":
           description: "successful operation"
+        "422":
+          description: "Invalid request"
       x-swagger-router-controller: "User"
 definitions:
   Planet:
@@ -121,9 +123,9 @@ definitions:
       email:
         type: "string"
       age:
-        type: "string"
+        type: "integer"
     example:
       name: "name"
-      email: "email"
-      age: "age"
       lastname: "lastname"
+      email: "email"
+      age: 18

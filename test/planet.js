@@ -19,7 +19,7 @@ describe('planet', () => {
     expect(response.statusCode).to.be.equal(200);
   });
   
-  it('should have spanish property', async () => {
+  it('should have "spanish" property', async () => {
     const response = await wrapped.run({});
 
     expect(response).to.not.be.empty;

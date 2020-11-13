@@ -2,31 +2,43 @@
 
 const uuid = require('uuid');
 const dynamoDb = require('../../dynamoDb');
-const axios = require('../../axios');
-const utils = require('../../utils');
+const Joi = require('joi');
 
 module.exports.create = async (event, context, callback) => {
 
   const timestamp = new Date().getTime();
   const requestBody = JSON.parse(event.body);
-  let response = {};  
+  let response = {};
 
-  const name = requestBody.name;
-  const lastname = requestBody.lastname;
-  const email = requestBody.email;
-  const age = requestBody.age;
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    lastname: Joi.string().required(),
+    email: Joi.string().email().required(),
+    age: Joi.number().integer()
+  });
 
-  //TODO: validate
+  const { error, value } = schema.validate(requestBody);
+
+  if( error ) {
+    response = {
+      statusCode: 422,
+      body: JSON.stringify({ 
+        message: 'Invalid request', 
+        errors: error.details.map(e => e.message).join(', ') }),
+    };
+
+    callback(null, response);
+  }
 
   try {
     const params = {
       TableName: process.env.DYNAMODB_TABLE,
       Item: {
         id: uuid.v1(),
-        name: name,
-        lastname: lastname,
-        email: email,
-        age: age,
+        name: value.name,
+        lastname: value.lastname,
+        email: value.email,
+        age: value.age,
         createdAt: timestamp,
         updatedAt: timestamp,
       },
@@ -34,7 +46,6 @@ module.exports.create = async (event, context, callback) => {
   
     dynamoDb.put(params, (error) => {
       if (error) {
-        // console.error(error);
 
         response = {
           statusCode: 500,
